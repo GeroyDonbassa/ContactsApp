@@ -5,7 +5,7 @@ namespace ContactsApp
     public class Project
     {
         /// <summary>
-        ///     Конструктор определения значений контактов.
+        /// Конструктор определения значений контактов.
         /// </summary>
         /// <param name="contacts">Контакты.</param>
         public Project(List<Contact> contacts)
@@ -14,7 +14,7 @@ namespace ContactsApp
         }
 
         /// <summary>
-        ///     Контакты.
+        /// Контакты.
         /// </summary>
         public List<Contact> Contacts { get; }
     }
