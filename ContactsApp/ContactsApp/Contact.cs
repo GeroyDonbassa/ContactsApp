@@ -140,7 +140,15 @@ namespace ContactsApp
         /// <returns>Новая строка с заглавным первым символом.</returns>
         private static string FirstSymbolToUpper(string value)
         {
-            return char.ToUpper(value[0]) + value.Substring(1);
+            if (value.Length < 1)
+            {
+                throw new IndexOutOfRangeException("имя или фамлиия пусты");
+            }
+            if (value.Length >1)
+            {
+                return char.ToUpper(value[0]) + value.Substring(1);
+            }
+            return char.ToUpper(value[0]).ToString();
         }
 
         /// <summary>
