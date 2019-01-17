@@ -12,13 +12,14 @@ using ContactsApp;
 
 namespace ContactsAppUI
 {
-    public partial class AddEditContactsForm : Form
+    public partial class AddEditContacts : Form
     {
         private Contact _newContact;
 
-        public AddEditContactsForm()
+        public AddEditContacts()
         {
             InitializeComponent();
+            this.Text = "AddEditContact";
             NewContact = new Contact();
         }
 
@@ -60,12 +61,12 @@ namespace ContactsAppUI
             }
             catch (ArgumentException e)
             {
-                MessageBox.Show(e.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
             catch (IndexOutOfRangeException e)
             {
-                MessageBox.Show(e.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
 
@@ -75,12 +76,12 @@ namespace ContactsAppUI
             }
             catch (ArgumentException e)
             {
-                MessageBox.Show(e.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
             catch (IndexOutOfRangeException e)
             {
-                MessageBox.Show(e.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
 
@@ -90,7 +91,7 @@ namespace ContactsAppUI
             }
             catch (ArgumentException e)
             {
-                MessageBox.Show(e.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
 
@@ -100,7 +101,7 @@ namespace ContactsAppUI
             }
             catch (ArgumentException e)
             {
-                MessageBox.Show(e.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
 
@@ -110,7 +111,7 @@ namespace ContactsAppUI
             }
             catch (ArgumentException e)
             {
-                MessageBox.Show(e.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
 
@@ -121,7 +122,7 @@ namespace ContactsAppUI
             }
             catch (FormatException)
             {
-                MessageBox.Show("Номер телефона введен неверно", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Incorrect Phone Number", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
 
@@ -139,7 +140,7 @@ namespace ContactsAppUI
                 return;
 
             this.DialogResult = DialogResult.OK;
-            MessageBox.Show("Контакт сохранен");
+            MessageBox.Show("Contact been saved");
         }
 
         private void Close_Click(object sender, EventArgs e)

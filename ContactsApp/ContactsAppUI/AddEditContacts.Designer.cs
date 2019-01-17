@@ -1,6 +1,6 @@
 ﻿namespace ContactsAppUI
 {
-    partial class AddEditContactsForm
+    partial class AddEditContacts
     {
         /// <summary>
         /// Переменная конструктора.

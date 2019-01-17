@@ -71,7 +71,7 @@ namespace ContactsAppUI
         }
         public void MethAddContact()
         {
-            var addContactForm = new AddEditContactsForm();
+            var addContactForm = new AddEditContacts();
 
             addContactForm.ShowDialog();
 
@@ -95,11 +95,11 @@ namespace ContactsAppUI
         {
             if (ContactsList.SelectedItem == null)
             {
-                MessageBox.Show("Контакт не выбран!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No contact selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            var addContactForm = new AddEditContactsForm();
+            var addContactForm = new AddEditContacts();
             var selectContact = _project.Contacts[ContactsList.SelectedIndex];
 
             addContactForm.NewContact = selectContact;
@@ -111,13 +111,13 @@ namespace ContactsAppUI
         {
             if (ContactsList.SelectedItem == null)
             {
-                MessageBox.Show("Контакт не выбран!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No contact selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             var result = new System.Windows.Forms.DialogResult();
-            result = MessageBox.Show("Вы точно хотите удалить контакт: " + ContactsList.Items[ContactsList.SelectedIndex],
-                "Удаление контакта", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            result = MessageBox.Show("Are you sure you want delete the contact: " + ContactsList.Items[ContactsList.SelectedIndex],
+                "Delete the contact", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
             if (result == DialogResult.Yes)
             {

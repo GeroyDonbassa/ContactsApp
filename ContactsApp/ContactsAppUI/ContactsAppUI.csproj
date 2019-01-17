@@ -51,11 +51,11 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddEditContactsForm.cs">
+    <Compile Include="AddEditContacts.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddEditContactsForm.Designer.cs">
-      <DependentUpon>AddEditContactsForm.cs</DependentUpon>
+    <Compile Include="AddEditContacts.Designer.cs">
+      <DependentUpon>AddEditContacts.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -68,8 +68,8 @@
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddEditContactsForm.resx">
-      <DependentUpon>AddEditContactsForm.cs</DependentUpon>
+    <EmbeddedResource Include="AddEditContacts.resx">
+      <DependentUpon>AddEditContacts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
