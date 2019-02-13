@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using ContactsApp;
@@ -14,18 +7,21 @@ namespace ContactsAppUI
 {
     public partial class AddEditContacts : Form
     {
+        private const string ErrorDialogName = "Error";
         private Contact _newContact;
+
+        public Regex RegexForNameOrSurname = new Regex("[a-zA-Zа-яА-Я-\b]");
 
         public AddEditContacts()
         {
             InitializeComponent();
-            this.Text = "AddEditContact";
+            Text = "AddEditContact";
             NewContact = new Contact();
         }
 
         public Contact NewContact
         {
-            get { return _newContact; }
+            get => _newContact;
             set
             {
                 _newContact = value;
@@ -34,9 +30,7 @@ namespace ContactsAppUI
         }
 
 
-
         /// <summary>
-        /// 
         /// </summary>
         public void EnterData()
         {
@@ -54,19 +48,18 @@ namespace ContactsAppUI
 
         public Contact EnterContact()
         {
-
             try
             {
                 NewContact.Surname = SurnameTextBox.Text;
             }
             catch (ArgumentException e)
             {
-                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, ErrorDialogName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
             catch (IndexOutOfRangeException e)
             {
-                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, ErrorDialogName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
 
@@ -76,12 +69,12 @@ namespace ContactsAppUI
             }
             catch (ArgumentException e)
             {
-                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, ErrorDialogName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
             catch (IndexOutOfRangeException e)
             {
-                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, ErrorDialogName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
 
@@ -91,7 +84,7 @@ namespace ContactsAppUI
             }
             catch (ArgumentException e)
             {
-                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, ErrorDialogName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
 
@@ -101,7 +94,7 @@ namespace ContactsAppUI
             }
             catch (ArgumentException e)
             {
-                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, ErrorDialogName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
 
@@ -111,18 +104,19 @@ namespace ContactsAppUI
             }
             catch (ArgumentException e)
             {
-                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, ErrorDialogName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
 
             try
             {
-                string str = PhoneMaskedTextBox.Text.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "").Replace("+", "");
+                var str = PhoneMaskedTextBox.Text.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "")
+                    .Replace("+", "");
                 NewContact.Number.Number = Convert.ToInt64(str.Remove(0, 1));
             }
             catch (FormatException)
             {
-                MessageBox.Show("Incorrect Phone Number", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Incorrect Phone Number", ErrorDialogName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
 
@@ -139,41 +133,27 @@ namespace ContactsAppUI
             if (EnterContact() == null)
                 return;
 
-            this.DialogResult = DialogResult.OK;
-            MessageBox.Show("Contact been saved");
+            DialogResult = DialogResult.OK;
         }
 
         private void Close_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
-        public Regex regexForNameORSurname = new Regex("[a-zA-Zа-яА-Я-\b]");
         private void ContactNameTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
-            if (!regexForNameORSurname.IsMatch(e.KeyChar.ToString()) ||(NameTextBox.TextLength >= 50 && e.KeyChar != (char)Keys.Back))
-            {
-                e.Handled = true;
-                return;
-            }
+            if (!RegexForNameOrSurname.IsMatch(e.KeyChar.ToString()) ||
+                NameTextBox.TextLength >= 50 && e.KeyChar != (char) Keys.Back) e.Handled = true;
         }
 
         private void SurenameTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!regexForNameORSurname.IsMatch(e.KeyChar.ToString()) || (NameTextBox.TextLength >= 50 && e.KeyChar != (char)Keys.Back))
+            if (!RegexForNameOrSurname.IsMatch(e.KeyChar.ToString()) ||
+                NameTextBox.TextLength >= 50 && e.KeyChar != (char) Keys.Back)
             {
                 e.Handled = true;
-                return;
             }
         }
-
-        private void BirthdayDateTimePicker_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
     }
-
-
 }

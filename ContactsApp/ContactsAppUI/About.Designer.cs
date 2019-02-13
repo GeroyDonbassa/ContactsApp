@@ -61,7 +61,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(18, 207);
+            this.label6.Location = new System.Drawing.Point(12, 203);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(107, 13);
             this.label6.TabIndex = 15;
@@ -71,7 +71,7 @@
             // git
             // 
             this.git.AutoSize = true;
-            this.git.Location = new System.Drawing.Point(18, 175);
+            this.git.Location = new System.Drawing.Point(12, 175);
             this.git.Name = "git";
             this.git.Size = new System.Drawing.Size(43, 13);
             this.git.TabIndex = 14;
@@ -80,7 +80,7 @@
             // email
             // 
             this.email.AutoSize = true;
-            this.email.Location = new System.Drawing.Point(18, 162);
+            this.email.Location = new System.Drawing.Point(12, 162);
             this.email.Name = "email";
             this.email.Size = new System.Drawing.Size(37, 13);
             this.email.TabIndex = 13;
@@ -89,17 +89,17 @@
             // Author
             // 
             this.Author.AutoSize = true;
-            this.Author.Location = new System.Drawing.Point(12, 96);
+            this.Author.Location = new System.Drawing.Point(12, 84);
             this.Author.Name = "Author";
             this.Author.Size = new System.Drawing.Size(117, 13);
             this.Author.TabIndex = 12;
             this.Author.Text = "Author: Sokolovski Kirill\r\n";
             // 
-            // V
+            // Ver
             // 
             this.Ver.AutoSize = true;
-            this.Ver.Location = new System.Drawing.Point(12, 65);
-            this.Ver.Name = "V";
+            this.Ver.Location = new System.Drawing.Point(12, 56);
+            this.Ver.Name = "Ver";
             this.Ver.Size = new System.Drawing.Size(52, 13);
             this.Ver.TabIndex = 11;
             this.Ver.Text = "ver. 1.0.0";
@@ -108,7 +108,7 @@
             // 
             this.ContactsApp.AutoSize = true;
             this.ContactsApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ContactsApp.Location = new System.Drawing.Point(10, 26);
+            this.ContactsApp.Location = new System.Drawing.Point(10, 27);
             this.ContactsApp.Name = "ContactsApp";
             this.ContactsApp.Size = new System.Drawing.Size(160, 29);
             this.ContactsApp.TabIndex = 10;
@@ -127,6 +127,7 @@
             this.Controls.Add(this.Author);
             this.Controls.Add(this.Ver);
             this.Controls.Add(this.ContactsApp);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximumSize = new System.Drawing.Size(278, 282);
             this.MinimumSize = new System.Drawing.Size(278, 282);
             this.Name = "About";

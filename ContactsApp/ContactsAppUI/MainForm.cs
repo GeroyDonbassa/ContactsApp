@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using ContactsApp;
 
@@ -9,46 +9,29 @@ namespace ContactsAppUI
     public partial class MainForm : Form
     {
         /// <summary>
-        /// Объявление нового экземпляра списка контактов
-        /// </summary>
-        //private Project _project;
-        /// <summary>
-        /// Экземпляр списка контактов после поиска
+        /// Проект.
         /// </summary>
         private readonly Project _project;
 
-        private readonly ProjectManager _projectManager;
-
+        /// <summary>
+        /// TODO
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
-            this.BirthdayDayTool.Value = DateTime.Now;
-            _projectManager = new ProjectManager(Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                "ContactApp.contacts"));
-            if (File.Exists(Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                "ContactApp.contacts")))
-            {
-                _project = _projectManager.LoadFromFile();
-                ShowListBoxContact();
-            }
-            else
-            {
-                _project = new Project(new List<Contact>());
-            }
+            BirthdayDayTool.Value = DateTime.Now;
 
-            if (_project.Contacts.Count > 0)
-            {
-                this.ContactsList.SelectedIndex = 0;
-            }
+            _project = ProjectManager.LoadFromFile() ?? new Project(new List<Contact>());
+            ShowListBoxContact();
+
+            FormClosing += ContactsApp_FormClosing;
         }
 
         /// <summary>
         /// Вывод выбранного контакта для просмотра
         /// </summary>
-        /// < param  name = " sender " > </ param >
-        /// < param  name = " e " > </ param >
+        /// < param name="sender"></param>
+        /// < param name="e"></param>
         private void ContactsList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ContactsList.SelectedIndex < 0)
@@ -64,11 +47,17 @@ namespace ContactsAppUI
             PhoneTextBox.Text = contact[selectIndex].Number.Number.ToString();
         }
 
+        /// <summary>
+        /// TODO
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addContactButton_Click(object sender, EventArgs e)
         {
             MethAddContact();
-
         }
+
+        //TODO
         public void MethAddContact()
         {
             var addContactForm = new AddEditContacts();
@@ -81,6 +70,7 @@ namespace ContactsAppUI
                 ContactsList.Items.Add(addContactForm.NewContact.Surname);
             }
         }
+
         /// <summary>
         /// Метод изменения контакта. Контакт должен изменяться поштучно
         /// </summary>
@@ -91,11 +81,14 @@ namespace ContactsAppUI
             MethEditContact();
         }
 
+        /// <summary>
+        /// TODO
+        /// </summary>
         public void MethEditContact()
         {
             if (ContactsList.SelectedItem == null)
             {
-                MessageBox.Show("No contact selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(@"No contact selected", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -107,17 +100,20 @@ namespace ContactsAppUI
 
             ShowListBoxContact();
         }
+
+        //TODO
         public void MethRemoveContact()
         {
             if (ContactsList.SelectedItem == null)
             {
-                MessageBox.Show("No contact selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(@"No contact selected", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            var result = new System.Windows.Forms.DialogResult();
-            result = MessageBox.Show("Are you sure you want delete the contact: " + ContactsList.Items[ContactsList.SelectedIndex],
-                "Delete the contact", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            var result = new DialogResult();
+            result = MessageBox.Show(
+                @"Are you sure you want to delete the contact: " + ContactsList.Items[ContactsList.SelectedIndex],
+                @"Delete the contact", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
             if (result == DialogResult.Yes)
             {
@@ -129,36 +125,63 @@ namespace ContactsAppUI
                 ShowListBoxContact();
             }
         }
-        /// < summary >
-        /// Кнопка удаления контакта
-        /// </ summary >
-        /// < param  name = " sender " > </ param >
-        /// < param  name = " e " > </ param >
+
+        /// <summary>
+        /// Кнопка удаления контакта.
+        /// </summary>
+        /// <param name="sender">TODO</param>
+        /// <TODO убрать отсутпы!! ПИДОР! param name="e"></param>
         private void DeleteContactButton_Click(object sender, EventArgs e)
         {
             MethRemoveContact();
         }
 
-
+        /// <summary>
+        /// TODO
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
-
+        /// <summary>
+        /// TODO
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            About about = new About();
+            var about = new About();
             about.ShowDialog();
         }
+
+        /// <summary>
+        /// TODO
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addContactToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MethAddContact();
         }
+
+        /// <summary>
+        /// TODO
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void editContactToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MethEditContact();
         }
+
+        /// <summary>
+        /// TODO
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void removeCpntactToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MethRemoveContact();
@@ -171,17 +194,18 @@ namespace ContactsAppUI
         public void ShowListBoxContact()
         {
             ContactsList.Items.Clear();
-            ClearAll();
+            ClearDisplayedData();
 
-            if (_project.Contacts.Count <= 0)
+            if (!_project.Contacts.Any())
                 return;
 
-            foreach (Contact t in _project.Contacts)
-            {
-                ContactsList.Items.Add(t.Surname);
-            }
+            foreach (var contact in _project.Contacts) ContactsList.Items.Add(contact.Surname);
         }
-        public void ClearAll()
+
+        /// <summary>
+        /// TODO
+        /// </summary>
+        public void ClearDisplayedData()
         {
             SurnameTextBox.Text = "";
             NameTextBox.Text = "";
@@ -190,16 +214,14 @@ namespace ContactsAppUI
             PhoneTextBox.Text = "";
         }
 
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
         private void ContactsApp_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _projectManager.SaveToFile(_project);
+            ProjectManager.SaveToFile(_project);
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
-
 }

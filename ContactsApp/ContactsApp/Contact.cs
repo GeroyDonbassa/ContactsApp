@@ -106,10 +106,10 @@ namespace ContactsApp
             set
             {
                 if (value < new DateTime(1901, 1, 1))
-                    throw new ArgumentException("Год рождения не может быть меньше 1900 года");
+                    throw new ArgumentException("Date of Birth cannot be earlier then 1900");
 
                 if (value > DateTime.Today)
-                    throw new ArgumentException("Дата рождения не может быть больше нынешней даты");
+                    throw new ArgumentException("Date of Birth cannot be latest then today");
 
                 _birthday = value;
             }
@@ -142,7 +142,7 @@ namespace ContactsApp
         {
             if (value.Length < 1)
             {
-                throw new IndexOutOfRangeException("имя или фамлиия пусты");
+                throw new IndexOutOfRangeException("Name are empty");
             }
             if (value.Length >1)
             {
@@ -159,7 +159,7 @@ namespace ContactsApp
         private static void ValidateStringLength(string value, int length)
         {
             if (value.Length > length)
-                throw new ArgumentException($"Длина поля не может превышать {length} символов.");
+                throw new ArgumentException($"Lenght cannot be more then {length}");
         }
     }
 }

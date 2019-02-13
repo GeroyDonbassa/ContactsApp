@@ -20,11 +20,8 @@ namespace ContactsApp
             get => _number;
             set
             {
-                if (value.ToString() == string.Empty)
-                    throw new ArgumentNullException();
-
                 if (value.ToString().Length > 11)
-                    throw new ArgumentException("Длина номера телефона должна быть меньше 11.");
+                    throw new ArgumentException("Phonenumber lenght must be more then 11");
 
                 _number = value;
             }
