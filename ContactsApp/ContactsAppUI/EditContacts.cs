@@ -5,17 +5,17 @@ using ContactsApp;
 
 namespace ContactsAppUI
 {
-    public partial class AddEditContacts : Form
+    public partial class EditContacts : Form
     {
         private const string ErrorDialogName = "Error";
         private Contact _newContact;
 
         public Regex RegexForNameOrSurname = new Regex("[a-zA-Zа-яА-Я-\b]");
 
-        public AddEditContacts()
+        public EditContacts()
         {
             InitializeComponent();
-            Text = "AddEditContact";
+            Text = "EditContact";
             NewContact = new Contact();
         }
 
@@ -31,6 +31,7 @@ namespace ContactsAppUI
 
 
         /// <summary>
+        /// Ввод даты.
         /// </summary>
         public void EnterData()
         {
@@ -46,7 +47,11 @@ namespace ContactsAppUI
                 BirthdayDateTimePicker.Value = _newContact.Birthday.Date;
         }
 
-        public Contact EnterContact()
+        /// <summary>
+        /// Заполнение контакта.
+        /// </summary>
+        /// <returns></returns>
+        public Contact EditContact()
         {
             try
             {
@@ -124,18 +129,27 @@ namespace ContactsAppUI
             return NewContact;
         }
 
-
+        /// <summary>
+        /// Кнопка подтверждения.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OK_Click(object sender, EventArgs e)
         {
             if (NewContact == null)
                 NewContact = new Contact();
 
-            if (EnterContact() == null)
+            if (EditContact() == null)
                 return;
 
             DialogResult = DialogResult.OK;
         }
 
+        /// <summary>
+        /// Кнопка закрытия.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Close_Click(object sender, EventArgs e)
         {
             Close();

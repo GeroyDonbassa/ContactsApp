@@ -1,6 +1,6 @@
 ﻿namespace ContactsAppUI
 {
-    partial class AddEditContacts
+    partial class EditContacts
     {
         /// <summary>
         /// Переменная конструктора.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddEditContacts));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditContacts));
             this.PhoneMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.CloseButton = new System.Windows.Forms.Button();
             this.OK = new System.Windows.Forms.Button();
@@ -47,21 +47,24 @@
             // 
             // PhoneMaskedTextBox
             // 
+            this.PhoneMaskedTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.PhoneMaskedTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.PhoneMaskedTextBox.Location = new System.Drawing.Point(93, 112);
             this.PhoneMaskedTextBox.Mask = "+7 (999) 000-0000";
             this.PhoneMaskedTextBox.Name = "PhoneMaskedTextBox";
             this.PhoneMaskedTextBox.Size = new System.Drawing.Size(373, 24);
-            this.PhoneMaskedTextBox.TabIndex = 28;
+            this.PhoneMaskedTextBox.TabIndex = 24;
             // 
             // CloseButton
             // 
             this.CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CloseButton.Location = new System.Drawing.Point(410, 240);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(75, 23);
-            this.CloseButton.TabIndex = 27;
+            this.CloseButton.TabIndex = 28;
             this.CloseButton.Text = "Cancel";
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.Close_Click);
@@ -69,24 +72,23 @@
             // OK
             // 
             this.OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.OK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OK.Location = new System.Drawing.Point(329, 240);
             this.OK.Name = "OK";
             this.OK.Size = new System.Drawing.Size(75, 23);
-            this.OK.TabIndex = 26;
+            this.OK.TabIndex = 27;
             this.OK.Text = "OK";
             this.OK.UseVisualStyleBackColor = true;
             this.OK.Click += new System.EventHandler(this.OK_Click);
             // 
             // BirthdayDateTimePicker
             // 
-            this.BirthdayDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.BirthdayDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.BirthdayDateTimePicker.Location = new System.Drawing.Point(93, 82);
             this.BirthdayDateTimePicker.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.BirthdayDateTimePicker.Name = "BirthdayDateTimePicker";
             this.BirthdayDateTimePicker.Size = new System.Drawing.Size(141, 24);
-            this.BirthdayDateTimePicker.TabIndex = 25;
+            this.BirthdayDateTimePicker.TabIndex = 23;
             // 
             // VKTextBox
             // 
@@ -96,7 +98,7 @@
             this.VKTextBox.Location = new System.Drawing.Point(93, 172);
             this.VKTextBox.Name = "VKTextBox";
             this.VKTextBox.Size = new System.Drawing.Size(373, 24);
-            this.VKTextBox.TabIndex = 24;
+            this.VKTextBox.TabIndex = 26;
             // 
             // EmailTextBox
             // 
@@ -106,7 +108,7 @@
             this.EmailTextBox.Location = new System.Drawing.Point(93, 142);
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.Size = new System.Drawing.Size(373, 24);
-            this.EmailTextBox.TabIndex = 23;
+            this.EmailTextBox.TabIndex = 25;
             // 
             // SurnameTextBox
             // 
@@ -190,7 +192,7 @@
             this.Name2.TabIndex = 15;
             this.Name2.Text = "Name:";
             // 
-            // AddEditContacts
+            // AddEditContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -212,7 +214,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(2048, 314);
             this.MinimumSize = new System.Drawing.Size(515, 314);
-            this.Name = "AddEditContacts";
+            this.Name = "AddEditContact";
             this.Text = "AddEditContactsForm";
             this.ResumeLayout(false);
             this.PerformLayout();

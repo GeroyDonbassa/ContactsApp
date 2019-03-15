@@ -6,7 +6,7 @@ using ContactsApp;
 
 namespace ContactsAppUI
 {
-    public partial class MainForm : Form
+    public partial class Main : Form
     {
         /// <summary>
         /// Проект.
@@ -14,9 +14,9 @@ namespace ContactsAppUI
         private readonly Project _project;
 
         /// <summary>
-        /// TODO
+        /// Загрузка или создание проекта.
         /// </summary>
-        public MainForm()
+        public Main()
         {
             InitializeComponent();
             BirthdayDayTool.Value = DateTime.Now;
@@ -48,19 +48,21 @@ namespace ContactsAppUI
         }
 
         /// <summary>
-        /// TODO
+        /// Кнопка добавления контакта.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void addContactButton_Click(object sender, EventArgs e)
+        private void AddContactButton_Click(object sender, EventArgs e)
         {
             MethAddContact();
         }
 
-        //TODO
+        /// <summary>
+        /// Метод добавления контакта.
+        /// </summary>
         public void MethAddContact()
         {
-            var addContactForm = new AddEditContacts();
+            var addContactForm = new EditContacts();
 
             addContactForm.ShowDialog();
 
@@ -72,17 +74,17 @@ namespace ContactsAppUI
         }
 
         /// <summary>
-        /// Метод изменения контакта. Контакт должен изменяться поштучно
+        /// Кнопка изменения контакта.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void RemovContactButton_Click(object sender, EventArgs e)
+        private void editContactButton_Click(object sender, EventArgs e)
         {
             MethEditContact();
         }
 
         /// <summary>
-        /// TODO
+        /// Метод изменения контакта.
         /// </summary>
         public void MethEditContact()
         {
@@ -92,7 +94,7 @@ namespace ContactsAppUI
                 return;
             }
 
-            var addContactForm = new AddEditContacts();
+            var addContactForm = new EditContacts();
             var selectContact = _project.Contacts[ContactsList.SelectedIndex];
 
             addContactForm.NewContact = selectContact;
@@ -101,7 +103,9 @@ namespace ContactsAppUI
             ShowListBoxContact();
         }
 
-        //TODO
+        /// <summary>
+        /// Метод удаления контакта.
+        /// </summary>
         public void MethRemoveContact()
         {
             if (ContactsList.SelectedItem == null)
@@ -129,15 +133,15 @@ namespace ContactsAppUI
         /// <summary>
         /// Кнопка удаления контакта.
         /// </summary>
-        /// <param name="sender">TODO</param>
-        /// <TODO убрать отсутпы!! ПИДОР! param name="e"></param>
-        private void DeleteContactButton_Click(object sender, EventArgs e)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void removeContactButton_Click(object sender, EventArgs e)
         {
             MethRemoveContact();
         }
 
         /// <summary>
-        /// TODO
+        /// Кнопка выхода из меню редактирования контакта.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -147,7 +151,7 @@ namespace ContactsAppUI
         }
 
         /// <summary>
-        /// TODO
+        /// Кнопка вызова окна "Редактирования".
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -158,7 +162,7 @@ namespace ContactsAppUI
         }
 
         /// <summary>
-        /// TODO
+        /// Кнопка добавления в "Редактировании".
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -168,7 +172,7 @@ namespace ContactsAppUI
         }
 
         /// <summary>
-        /// TODO
+        /// Кнопка редактирования в "Редактировании".
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -178,7 +182,7 @@ namespace ContactsAppUI
         }
 
         /// <summary>
-        /// TODO
+        /// Кнопка удаления в "Редактировании".
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -203,7 +207,7 @@ namespace ContactsAppUI
         }
 
         /// <summary>
-        /// TODO
+        /// Очистить поля контакта.
         /// </summary>
         public void ClearDisplayedData()
         {
@@ -221,7 +225,6 @@ namespace ContactsAppUI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
         }
     }
 }

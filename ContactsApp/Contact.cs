@@ -106,10 +106,10 @@ namespace ContactsApp
             set
             {
                 if (value < new DateTime(1901, 1, 1))
-                    throw new ArgumentException("Date of Birth cannot be earlier then 1900");
+                    throw new ArgumentException("Год рождения не может быть меньше 1900 года");
 
                 if (value > DateTime.Today)
-                    throw new ArgumentException("Date of Birth cannot be latest then today");
+                    throw new ArgumentException("Дата рождения не может быть больше нынешней даты");
 
                 _birthday = value;
             }
@@ -140,8 +140,14 @@ namespace ContactsApp
         /// <returns>Новая строка с заглавным первым символом.</returns>
         private static string FirstSymbolToUpper(string value)
         {
-            if (value.Length < 1) throw new IndexOutOfRangeException("Name are empty");
-            if (value.Length > 1) return char.ToUpper(value[0]) + value.Substring(1);
+            if (value.Length < 1)
+            {
+                throw new IndexOutOfRangeException("имя или фамлиия пусты");
+            }
+            if (value.Length >1)
+            {
+                return char.ToUpper(value[0]) + value.Substring(1);
+            }
             return char.ToUpper(value[0]).ToString();
         }
 
@@ -153,7 +159,7 @@ namespace ContactsApp
         private static void ValidateStringLength(string value, int length)
         {
             if (value.Length > length)
-                throw new ArgumentException($"Lenght cannot be more then {length}");
+                throw new ArgumentException($"Длина поля не может превышать {length} символов.");
         }
     }
 }
